@@ -5,7 +5,7 @@
 <meta name="description" content="A system to allow reporting of maintenance and repairs request, to track the maintenance process and escalate unusual delays."/> <!--Website Description -->
 <meta name="revised" content="Bolaji Olajide, 19-January,2017" /> <!-- Code revised by Bolaji Olajide -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> <!-- the document consists of mostly text and html characters -->
-<title>Tracking | Maintenance Tracker</title>
+<title> Approve | Reject </title>
 <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
 <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Arsenal|Slabo+27px" rel="stylesheet">
@@ -13,21 +13,26 @@
 </head>
 <body>
   <% include partials/nav.ejs %>
-    <input type="text" id="trackID" name="trackID" size="15" maxlength="8" placeholder="Enter your track ID" style="padding-bottom:10px;" /> <br />
-    <button id="track" onclick="track()"> Track </button>
+    <button id="View Log" onclick="viewLog()"> View Log </button>
     <br />
     <br />
     <br />
-    <table>
-      <tr>
-        <th> Tracking ID </th>
-        <th> Car Model </th>
-        <th> Maintenance Handler </th>
-        <th> Damage </th>
-        <th> Status </th>
-      </tr>
+      <h1 style="text-align: center"> Maintenance Log </h1>
 
-    </table>
+      <table>
+        <tr>
+          <th> S/No </th>
+          <th>Car Owner</th>
+          <th>Mobile No</th>
+          <th>Track ID</th>
+          <th>Car Model</th>
+          <th>Engine No</th>
+          <th>Damage</th>
+        </tr>
+
+      </table>
+
+
   <script src="/assets/scripts/admin.js"></script>
 </body>
 </html>
