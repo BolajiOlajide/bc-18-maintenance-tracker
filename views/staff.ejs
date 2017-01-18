@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head> <!-- Document HEader starts here -->
+<meta name="keywords" content="maintenance tracker, car, maintenance, andela, bootcamp, project" /> <!-- Keywords used for search engine indexing! -->
+<meta name="description" content="A system to allow reporting of maintenance and repairs request, to track the maintenance process and escalate unusual delays."/> <!--Website Description -->
+<meta name="revised" content="Bolaji Olajide, 19-January,2017" /> <!-- Code revised by Bolaji Olajide -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> <!-- the document consists of mostly text and html characters -->
+<title> Staff Info </title>
+<link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Arsenal|Slabo+27px" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+  <% include partials/nav.ejs %>
+    <button id="View Log" onclick="viewStaff()"> View Log </button>
+    <br />
+    <br />
+    <br />
+      <h1 style="text-align: center"> Maintenance Staff </h1>
+
+      <table>
+        <tr>
+          <th> S/No </th>
+          <th> Age </th>
+          <th>Name</th>
+          <th>D.O.B</th>
+          <th>Contact No</th>
+          <th>E-mail</th>
+          <th>Specialty</th>
+        </tr>
+
+      </table>
+
+
+  <script src="/assets/scripts/admin.js"></script>
+</body>
+</html>
