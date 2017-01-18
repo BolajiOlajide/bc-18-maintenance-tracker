@@ -5,7 +5,7 @@ html{
   color: #0b0b0b;
 }
 
-input[type="text"],input[type="email"] {
+input[type="text"],input[type="email"],textarea {
     width: 70%;
     padding: 20px;
     background:#181c22;
@@ -74,4 +74,18 @@ a:hover {
 a:active {
   color:#0b0b0b;
   text-transform: uppercase;
+}
+
+.container {
+  float: right;
+  width: 65%;
+  margin-top: 40px;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: inline;
 }

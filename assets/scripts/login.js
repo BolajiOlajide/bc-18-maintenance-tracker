@@ -29,9 +29,9 @@ function login(username,password) {
       if(response.ok) {
         //redirectToAdmin();
         //window.location.href = '/admin/:uid';
-        alert('login success!!')
+        alert('login success!!');
       } else {
-        alert('login failed')
+        alert('login failed');
       }
     })
     .catch(function(error) {
@@ -47,7 +47,7 @@ function login(username,password) {
   }
 }
 
-function redirectToAdmin() {
+/* function redirectToAdmin() {
   fetch('/admin', {
     method: 'GET',
     headers: {
@@ -55,4 +55,4 @@ function redirectToAdmin() {
       'Content-Type' : 'application/json'
     }
     })
-}
+} */
