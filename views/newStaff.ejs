@@ -13,14 +13,17 @@
 <body>
   <% include partials/nav.ejs %>
   <div class="container">
-    <input type="text" id="name" name="name" size="15" maxlength="8" placeholder="Full name" style="padding-bottom:10px;" /> <br />
-    <input type="text" name="age" id="age" size="5" maxlength="2" placeholder="Age" style="padding-bottom:10px;"/> <br />
-    <input type="text" name="engineNumber" id="DOB" size="15" placeholder="Enter your Engine Number" style="padding-bottom:10px;"/> <br />
-    <textarea rows="4" cols="50" id="damage" placeholder="Damage Description"></textarea> <br>
-    <input type="text" name="name" id="name" size="15" placeholder="Enter name of Car Owner" style="padding-bottom:10px;"/> <br />
-    <input type="text" name="contact" id="contact" size="15" maxlength="11" placeholder="Enter Mobile Number of Car Owner" style="padding-bottom:10px;"/> <br />
+    <form method="POST">
+      <input type="text" id="name" name="name" size="15" placeholder="Full name" style="padding-bottom:10px;" /> <br />
+      <input type="text" name="age" id="age" size="5" maxlength="2" placeholder="Age" style="padding-bottom:10px;"/> <br />
+      <input type="text" name="DOB" id="dob" size="15" placeholder="Date of Birth" style="padding-bottom:10px;"/> <br />
+      <input type="text" name="contactNo" id="contactNo" size="15" maxlength="11" placeholder="Contact number" style="padding-bottom:10px;"/> <br />
+      <input type="email" name="email" id="email" size="15" placeholder="Email Address" style="padding-bottom:10px;"/> <br />
+      <input type="password" name="password" id="password" size="15" placeholder="password" style="padding-bottom:10px;"/> <br />
+      <input type="text" name="specialty" id="specialty" size="15" placeholder="Specialty of Staff" style="padding-bottom:10px;"/> <br />
+  </form>
 
-    <button id="track" onclick="newMaintenanceStaff()"> Create New Request </button>
+    <button id="track" onclick="createNewStaff()" style="margin-left: 270px;"> Create New User </button>
     <br />
     <br />
   </div>
