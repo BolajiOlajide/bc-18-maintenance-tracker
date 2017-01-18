@@ -112,7 +112,7 @@ function createNewStaff() {
   document.getElementById('specialty').value = "";
 
   projectRef.on("value", function(snapshot){
-			console.log(snapshot.val());
+			//console.log(snapshot.val());
 		}, function (error) {
 			console.log("Error: " +  error.code);
 		});
