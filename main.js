@@ -42,11 +42,6 @@ app.post('/', function(req,res) {
           //res.status(200).send({message: 'Login Success'});
 
           console.log('Success!');
-          res.redirect('/admin');
-            //app.get('/admin', function(req,res) {
-              //console.log(req.url);
-                //res.render('admin');
-            //});
         })
         .catch(function(error){
           console.log(error);
@@ -91,4 +86,14 @@ app.get('/newMaintain', function(req,res) {
 app.get('/newStaff', function(req,res) {
   console.log(req.url);
   res.render('newStaff');
+});
+
+app.get('/maintainLog', function(req,res) {
+  console.log(req.url);
+  res.render('maintainLog');
+});
+
+app.get('/staff', function(req,res) {
+  console.log(req.url);
+  res.render('staff');
 });
