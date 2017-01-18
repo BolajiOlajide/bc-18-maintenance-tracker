@@ -3,14 +3,20 @@
 <head> <!-- Document HEader starts here -->
 <meta name="keywords" content="maintenance tracker, car, maintenance, andela, bootcamp, project" /> <!-- Keywords used for search engine indexing! -->
 <meta name="description" content="A system to allow reporting of maintenance and repairs request, to track the maintenance process and escalate unusual delays."/> <!--Website Description -->
-<meta name="revised" content="Bolaji Olajide, 19-January,2016" /> <!-- Code revised by Bolaji Olajide -->
+<meta name="revised" content="Bolaji Olajide, 19-January,2017" /> <!-- Code revised by Bolaji Olajide -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> <!-- the document consists of mostly text and html characters -->
-<title>Dashboard | Maintenance Tracker</title>
+<title>Tracking | Maintenance Tracker</title>
 <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
 <link href="https://fonts.googleapis.com/css?family=Arsenal|Slabo+27px" rel="stylesheet">
 </head>
 <body>
   <% include partials/nav.ejs %>
+  <div class="container">
+    <input type="text" id="trackID" name="trackID" size="15" maxlength="8" placeholder="Enter your track ID" style="padding-bottom:10px;" /> <br />
+    <button id="track" onclick="track()"> Track </button>
+    <br />
+    <br />
+  </div>
   <script src="/assets/scripts/admin.js"></script>
 </body>
 </html>

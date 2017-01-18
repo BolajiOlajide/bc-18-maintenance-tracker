@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head> <!-- Document HEader starts here -->
+<meta name="keywords" content="maintenance tracker, car, maintenance, andela, bootcamp, project" /> <!-- Keywords used for search engine indexing! -->
+<meta name="description" content="A system to allow reporting of maintenance and repairs request, to track the maintenance process and escalate unusual delays."/> <!--Website Description -->
+<meta name="revised" content="Bolaji Olajide, 19-January,2017" /> <!-- Code revised by Bolaji Olajide -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> <!-- the document consists of mostly text and html characters -->
+<title> New Maintenance Staff </title>
+<link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Arsenal|Slabo+27px" rel="stylesheet">
+</head>
+<body>
+  <% include partials/nav.ejs %>
+  <div class="container">
+    <input type="text" id="name" name="name" size="15" maxlength="8" placeholder="Full name" style="padding-bottom:10px;" /> <br />
+    <input type="text" name="age" id="age" size="5" maxlength="2" placeholder="Age" style="padding-bottom:10px;"/> <br />
+    <input type="text" name="engineNumber" id="DOB" size="15" placeholder="Enter your Engine Number" style="padding-bottom:10px;"/> <br />
+    <textarea rows="4" cols="50" id="damage" placeholder="Damage Description"></textarea> <br>
+    <input type="text" name="name" id="name" size="15" placeholder="Enter name of Car Owner" style="padding-bottom:10px;"/> <br />
+    <input type="text" name="contact" id="contact" size="15" maxlength="11" placeholder="Enter Mobile Number of Car Owner" style="padding-bottom:10px;"/> <br />
+
+    <button id="track" onclick="newMaintenanceStaff()"> Create New Request </button>
+    <br />
+    <br />
+  </div>
+
+  <script src="/assets/scripts/admin.js"></script>
+</body>
+</html>

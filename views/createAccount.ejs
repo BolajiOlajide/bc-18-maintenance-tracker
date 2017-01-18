@@ -3,7 +3,7 @@
 <head> <!-- Document HEader starts here -->
 <meta name="keywords" content="maintenance tracker, car, maintenance, andela, bootcamp, project" /> <!-- Keywords used for search engine indexing! -->
 <meta name="description" content="A system to allow reporting of maintenance and repairs request, to track the maintenance process and escalate unusual delays."/> <!--Website Description -->
-<meta name="revised" content="Bolaji Olajide, 19-January,2016" /> <!-- Code revised by Bolaji Olajide -->
+<meta name="revised" content="Bolaji Olajide, 19-January,2017" /> <!-- Code revised by Bolaji Olajide -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> <!-- the document consists of mostly text and html characters -->
 <title>Maintenance Tracker</title>
 <link rel="stylesheet" type="text/css" href="/assets/css/indexStyle.css">
@@ -16,31 +16,12 @@
     </header>
 
     <div class="create">
-      <input type="text" id="createUser" name="createUser" size="10" maxlength="75" placeholder="Username" style="padding-bottom:10px;"/> <br />
-      <input type="password" id="createPass" name="createPass" size="30" placeholder="Password" /> <br />
+      <input type="text" id="username" name="password" size="10" maxlength="75" placeholder="Username" style="padding-bottom:10px;"/> <br />
+      <input type="password" id="username" name="password" size="30" placeholder="Password" /> <br />
       <br />
-      <button id="createBtn" onclick="create()"> Create Account </button>
+      <button id="createBtn" onclick="createAccount()"> Create Account </button>
       <p style="color:white;float:right;margin-right: 75px;"><a href='\'> Sign In </a></p>
       <p id='errorDisplay'></p>
-    </div>
-      <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-database.js"></script>
-
-      <script>
-        // Initialize Firebase
-        // TODO: Replace with your project's customized code snippet
-        var config = {
-          apiKey: "AIzaSyBA24m48rfJnoVj0W-qNmdxIdYT66DIFgQ",
-          authDomain: "bc-18-maintenance-tracker.firebaseapp.com",
-          databaseURL: "https://bc-18-maintenance-tracker.firebaseio.com",
-          storageBucket: "bc-18-maintenance-tracker.appspot.com",
-          messagingSenderId: "379983700309",
-        };
-        firebase.initializeApp(config);
-        //console.log(firebase);
-      </script>
-      <script src="/assets/scripts/login.js"></script>
+      <script src="/assets/scripts/admin.js"></script>
 </body>
 </html>
