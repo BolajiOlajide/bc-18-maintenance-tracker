@@ -1,0 +1,95 @@
+html {
+    background-image: url('/assets/img/repairTrans.jpg');
+    background-color: #FFFFFF;
+    font-size: 12px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #FFFFFF;
+    color: #0b0b0b;
+    letter-spacing: 1em;
+    font-size: 2rem;
+    text-align: center;
+    font-family: 'Overpass Mono', monospace;
+    margin-top: 0;
+    font-weight: bold;
+    width: 100%;
+}
+
+p{
+  font-family: 'Overpass Mono', monospace;
+}
+
+/* ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #FFFFFF;
+}
+
+li{
+    width: 100%;
+    display: inline;
+    padding: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: arial;
+    font-size: 20px;
+    font-color: white;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+li:hover{
+    font-weight: bold;
+    font-color: white;
+    background: rgba(0,0,0,0.4);
+} */
+
+input[type="text"], input[type="password"]{
+    width: 70%;
+    padding: 20px;
+    background:#181c22;
+    border: 0;
+    font-size: 20px;
+    color: #FFFFFF;
+    padding-bottom: 10px;
+    margin: 0 auto;
+    font-family: 'Arsenal', sans-serif;
+}
+
+button{
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    background: #23282e;
+    border: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: garamond, sans-serif;
+}
+
+.create {
+  position: absolute;
+  top: 270px;
+  left: 520px;
+}
+
+#username, #password {
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.login {
+  position: absolute;
+  top: 270px;
+  left: 520px;
+}
+
+a {
+  color: #0b0b0b;
+}
