@@ -12,28 +12,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
+  <!-- Partial Template which includes navigation -->
   <% include partials/nav.ejs %>
-    <button id="View Log" onclick="viewLog()"> View Log </button>
-    <br />
-    <br />
-    <br />
-      <h1 style="text-align: center"> Maintenance Log </h1>
-
-      <table>
-        <tr>
-          <th> S/No </th>
-          <th>Car Owner</th>
-          <th>Mobile No</th>
-          <th>Track ID</th>
-          <th>Car Model</th>
-          <th>Engine No</th>
-          <th>Damage</th>
-          <th>Status</th>
-        </tr>
-
-      </table>
-
-
-  <script src="/assets/scripts/admin.js"></script>
+  <h1 style="text-align: center;text-decoration: underline;"> Maintenance Log </h1>
+  <button id="View Log" onclick="viewLog()"> View Log </button>
+  <br />
+  <!-- HTML Table to output data from the database -->
+  <table>
+    <tr>
+      <th> S/No </th>
+      <th>Car Owner</th>
+      <th>Mobile No</th>
+      <th>Track ID</th>
+      <th>Car Model</th>
+      <th>Engine No</th>
+      <th>Damage</th>
+      <th>Status</th>
+    </tr>
+  </table>
+<script src="/assets/scripts/admin.js"></script>
 </body>
 </html>

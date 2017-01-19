@@ -5,33 +5,40 @@
 <meta name="description" content="A system to allow reporting of maintenance and repairs request, to track the maintenance process and escalate unusual delays."/> <!--Website Description -->
 <meta name="revised" content="Bolaji Olajide, 19-January,2017" /> <!-- Code revised by Bolaji Olajide -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> <!-- the document consists of mostly text and html characters -->
-<title> Approve | Reject </title>
+<title>Approve | Reject </title>
 <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
 <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Arsenal|Slabo+27px" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
-<body>
+<body onload="getStaffOnLoad()">
   <% include partials/nav.ejs %>
-    <button id="View Log" onclick="viewLog()"> View Log </button>
-    <br />
-    <br />
-    <br />
-      <h1 style="text-align: center"> Maintenance Log </h1>
 
-      <table>
-        <tr>
-          <th> S/No </th>
-          <th>Car Owner</th>
-          <th>Mobile No</th>
-          <th>Track ID</th>
-          <th>Car Model</th>
-          <th>Engine No</th>
-          <th>Damage</th>
-        </tr>
-
-      </table>
-
+  <input type="text" id="trackID" name="trackID" size="15" maxlength="8" placeholder="Enter your track ID" style="padding-bottom:10px;" /> <br />
+  <button id="track" onclick="trackIDForApproval()"> Track </button>
+  <br />
+  <br />
+  <table>
+    <tr>
+      <th> Tracking ID </th>
+      <th> Car Model </th>
+      <th> Damage </th>
+    </tr>
+  </table>
+  <br />
+  <label><h3> Assign Handler: </h3></label>
+  <select class = "staffList" id="staffList">
+  </select>
+  <br />
+  <label><h3>Status</h3></label>
+  <select class = "status" id="status">
+    <option value = "approve">Approve</option>
+    <option value = "reject">Reject</option>
+    <option value = "completed"> Completed </option>
+  </select>
+  <br />
+  <br />
+  <button onclick="approvereject()"> Save Data </button>
 
   <script src="/assets/scripts/admin.js"></script>
 </body>

@@ -5,16 +5,42 @@
 <meta name="description" content="A system to allow reporting of maintenance and repairs request, to track the maintenance process and escalate unusual delays."/> <!--Website Description -->
 <meta name="revised" content="Bolaji Olajide, 19-January,2017" /> <!-- Code revised by Bolaji Olajide -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> <!-- the document consists of mostly text and html characters -->
-<title>Report | Maintenance Tracker</title>
+<title> Report </title>
 <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Arsenal|Slabo+27px" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
-<body>
+<body onLoad="onLoadTrackID()">
   <% include partials/nav.ejs %>
-  <form method="POST" id="report" action="report()">
-    <input type="text"
+  <form method="POST" encType="multipart/form-data">
+    <label><h3> Tracking ID: </h3></label>
+    <select class="styled-select slate" id="trackID">
+    </select>
+    <textarea rows="4" cols="50" id="report" placeholder="Explain report."></textarea> <br>
+    <br />
+    <input type='file' id="imgUpload" onchange="readURL(event)" accept="image/*" />
+    <img id="imgPreview" src="/assets/img/placeholder.jpg" alt="your image" width="400" height="300" />
+    <br />
+    <button> Report Case </button>
   </form>
 
   <script src="/assets/scripts/admin.js"></script>
+  <script>
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#imgPreview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#imgUpload").change(function(){
+        readURL(this);
+      });
+    }
+  </script>
 </body>
 </html>

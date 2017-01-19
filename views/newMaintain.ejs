@@ -13,12 +13,12 @@
 <body>
   <% include partials/nav.ejs %>
   <div class="container">
-    <input type="text" id="trackID" name="trackID" size="15" maxlength="8" placeholder="Enter your Plate Number" style="padding-bottom:10px;" /> <br />
-    <input type="text" name="carModel" id="carModel" size="15" placeholder="Enter your Car Model" style="padding-bottom:10px;"/> <br />
+    <input type="text" id="trackID" name="trackID" size="15" maxlength="8" placeholder="Enter your Plate Number (required)" style="padding-bottom:10px;" /> <br />
+    <input type="text" name="carModel" id="carModel" size="15" placeholder="Enter your Car Model (required)" style="padding-bottom:10px;"/> <br />
     <input type="text" name="engineNumber" id="engineNumber" size="15" placeholder="Enter your Engine Number" style="padding-bottom:10px;"/> <br />
     <textarea rows="4" cols="50" id="damage" placeholder="Damage Description"></textarea> <br>
-    <input type="text" name="name" id="name" size="15" placeholder="Enter name of Car Owner" style="padding-bottom:10px;"/> <br />
-    <input type="text" name="contact" id="contact" size="15" maxlength="11" placeholder="Enter Mobile Number of Car Owner" style="padding-bottom:10px;"/> <br />
+    <input type="text" name="name" id="name" size="15" placeholder="Enter name of Car Owner (required)" style="padding-bottom:10px;"/> <br />
+    <input type="text" name="contact" id="contact" size="15" maxlength="11" placeholder="Enter Mobile Number of Car Owner (required)" style="padding-bottom:10px;"/> <br />
 
     <button id="track" onclick="newMaintenanceRequest()"> Create New Request </button>
     <br />
