@@ -1,13 +1,22 @@
 var express = require('express');
 require('dotenv').config();
+
 var app = express();
+var methodOverride = require('method-override');
 var firebase = require('./firebasedb');
 var Jusibe = require('jusibe');
 var jusibe = new Jusibe("b033fe3cf30d7873f208a767d26054c0", "4e07476fa37923e1980b51f05b94747b");
+var bodyParser = require('body-parser');
 
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
+app.use(methodOverride('_method'));
+
+// parse application/json
+app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/assets', express.static('assets'));
 
