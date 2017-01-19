@@ -1,48 +1,31 @@
 var express = require('express');
 require('dotenv').config();
-var bodyParser = require('body-parser');
 var app = express();
-var methodOverride = require('method-override');
 var firebase = require('./firebasedb');
 var Jusibe = require('jusibe');
 var jusibe = new Jusibe("b033fe3cf30d7873f208a767d26054c0", "4e07476fa37923e1980b51f05b94747b");
-var uid;
-
 
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
-app.use(methodOverride('_method'));
 
 app.use('/assets', express.static('assets'));
-// parse application/json
-app.use(bodyParser.json());
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('port',process.env.PORT || 3000);
-
 app.listen(app.get('port'),function() {
     console.log('Maintenance Tracker running. To terminate press Ctrl + C.');
 });
 
 app.get('/', function(req,res) {
-  /* console.log(req.url);
-  res.render('index');
-  console.log('Authenticating User'); */
-
   var current_user = firebase.auth().currentUser;
   console.log(current_user);
   if (current_user) {
-    var uid = current_user.uid;
+    //var uid = current_user.uid;
     res.redirect('/admin');
   } else {
     res.render('index');
   }
 });
-
-
 
 app.post('/', function(req,res) {
   const email = req.body.username;
@@ -53,7 +36,6 @@ app.post('/', function(req,res) {
       .then(function(user) {
       console.log('accepted');
       res.redirect('/admin');
-
       console.log('Success!');
     })
     .catch(function(error){
@@ -65,7 +47,6 @@ app.post('/', function(req,res) {
 app.get('/createAccount', function(req,res) {
   console.log(req.url);
   res.render('createAccount');
-  //res.send('Hey, Express Works!');
 });
 
 /* app.use(function(req, res) {
@@ -94,7 +75,7 @@ app.get('/report', function(req,res) {
 app.post('/report', function(req,res) {
   console.log(req.url);
   var payload = {
-    to: '07038550515',
+    to: '+2347038550515',
     from: 'Maintenance Tracker',
     message: 'Hello From the other side 😎\nI must have called a thousand times.'
   };
