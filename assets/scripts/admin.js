@@ -64,7 +64,7 @@ function track() {
 function signOut() {
   firebase.auth().signOut().then(function() {
     // Sign-out successful.
-    window.location.href('/');
+    //window.location.href('/');
   }, function(error) {
     // An error happened.
     alert(error);
@@ -272,7 +272,23 @@ function approvereject() {
   if (checkRow.length > 1) {
     console.log(checkRow);
     if (status.value == "approve") {
-      alert ('Approve');
+      // A post entry.
+      var postData = {
+        author: username,
+        body: body,
+        title: title,
+        starCount: 0,
+      };
+
+      // Get a key for a new Post.
+      var newPostKey = firebase.database().ref().child('cars').push().key;
+
+      // Write the new post's data simultaneously in the posts list and the user's post list.
+      var updates = {};
+      updates['/cars/' + newPostKey] = postData;
+      updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+
+      return firebase.database().ref().update(updates);
     } else {
       alert('Reject');
     }
