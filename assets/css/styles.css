@@ -55,11 +55,11 @@ a {
 
 
 a:link {
-  color:red;
+  color:white;
 }
 
 a:visited {
-  color:#a66;
+  color:#fff;
 }
 
 a:focus {
@@ -68,9 +68,9 @@ a:focus {
 }
 
 a:hover {
-  color:#a66;
+  color:#fff;
   text-decoration: none;
-  background-color: white;
+  background-color: #a66;
   opacity: 0.5;
 }
 
