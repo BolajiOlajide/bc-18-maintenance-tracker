@@ -4,6 +4,9 @@ var bodyParser = require('body-parser');
 var app = express();
 var methodOverride = require('method-override');
 var firebase = require('./firebasedb');
+var Jusibe = require('jusibe');
+var jusibe = new Jusibe("b033fe3cf30d7873f208a767d26054c0", "4e07476fa37923e1980b51f05b94747b");
+var uid;
 
 
 app.engine('ejs', require('ejs').renderFile);
@@ -25,34 +28,44 @@ app.listen(app.get('port'),function() {
 });
 
 app.get('/', function(req,res) {
-  console.log(req.url);
+  /* console.log(req.url);
+  res.render('index');
+  console.log('Authenticating User'); */
+
+  var current_user = firebase.auth().currentUser;
+  console.log(current_user);
+  if (current_user) {
+    var uid = current_user.uid;
+    res.redirect('/admin');
+  } else {
     res.render('index');
-    //res.send('Hey, Express Works!');
+  }
 });
 
 
 
 app.post('/', function(req,res) {
-    const email = req.body.username;
-    const password = req.body.password;
+  const email = req.body.username;
+  const password = req.body.password;
 
-    firebase.auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(function(user) {
-          //res.status(200).send({message: 'Login Success'});
+  firebase.auth()
+    .signInWithEmailAndPassword(email, password)
+      .then(function(user) {
+      console.log('accepted');
+      res.redirect('/admin');
 
-          console.log('Success!');
-        })
-        .catch(function(error){
-          console.log(error);
-          res.status(500).send({message: 'Login Failed'});
-        });
+      console.log('Success!');
+    })
+    .catch(function(error){
+      console.log(error);
+      res.status(500).send({message: 'Login Failed'});
+    });
 });
 
 app.get('/createAccount', function(req,res) {
   console.log(req.url);
-    res.render('createAccount');
-    //res.send('Hey, Express Works!');
+  res.render('createAccount');
+  //res.send('Hey, Express Works!');
 });
 
 /* app.use(function(req, res) {
@@ -78,6 +91,24 @@ app.get('/report', function(req,res) {
   res.render('report');
 });
 
+app.post('/report', function(req,res) {
+  console.log(req.url);
+  var payload = {
+    to: '07038550515',
+    from: 'Maintenance Tracker',
+    message: 'Hello From the other side 😎\nI must have called a thousand times.'
+  };
+  console.log(payload);
+  jusibe.sendSMS(payload, function (err, res) {
+    if (res.statusCode === 200) {
+      console.log(res.body);
+      //res.redirect('/admin');
+    } else {
+      console.log(err);
+    }
+  });
+})
+
 app.get('/newMaintain', function(req,res) {
   console.log(req.url);
   res.render('newMaintain');
@@ -96,4 +127,9 @@ app.get('/maintainLog', function(req,res) {
 app.get('/staff', function(req,res) {
   console.log(req.url);
   res.render('staff');
+});
+
+app.get('/approvereject', function(req,res) {
+  console.log(req.url);
+  res.render('approvereject');
 });
