@@ -6,25 +6,60 @@ var config = {
   storageBucket: "bc-18-maintenance-tracker.appspot.com",
   messagingSenderId: "379983700309",
 };
-
 var fire = firebase.initializeApp(config);
-
 // Get a reference to the database service
 var database = fire.database();
 
-function track() {
-  const trackID = document.getElementById('trackID').value;
-  document.getElementById('trackID').value = "";
-  var plateNumber = document.createElement('p');
-  plateNumber.setAttribute("id","plateNumber");
-  plateNumber.innerHTML = trackID;
-  alert('Tracking in progress: ' + trackID);
+function onLoadTrackID() {
+  var projectRef = fire.database().ref('/cars');
+
+  projectRef.orderByKey().on("value", function(snapshot){
+    var carArray = [];
+    snapshot.forEach(function(childSnapshot) {
+      var car = childSnapshot.val();
+      carArray.push(car);
+    });
+    for (var i = 0;i < carArray.length; i++) {
+      var car = carArray[i];
+      $('#trackID').append('<option value=' + car.trackID +'> ' + car.trackID + '</option>');
+    }
+  }, function (error) {
+    console.log("Error: " +  error.code);
+  });
 }
 
-/* function regExTest(string) {
-  var expression = (^[a-zA-Z0-9_.-]*$);
-  return expression.test(string);
-} */
+function track() {
+  var id = document.getElementById('trackID').value;
+  var projectRef = fire.database().ref('/cars');
+
+  projectRef.orderByKey().on("value", function(snapshot){
+    var cars = [];
+    snapshot.forEach(function(childSnapshot) {
+      var car = childSnapshot.val();
+      cars.push(car);
+    });
+    var carObject ={}
+    for (var i = 0;i < cars.length; i++) {
+      var car = cars[i];
+      carObject[car.trackID] = cars[i];
+    }
+    if(id in carObject){
+      var $row = $('<tr class="tables">'+
+      '<td>' + carObject[id].trackID + '</td>' +
+      '<td>' + carObject[id].CarModel + '</td>' +
+      '<td>' + "Handler" + '</td>' +
+      '<td>' + carObject[id].Damage + '</td>' +
+      '<td>' + carObject[id].status + '</td>' +
+      '</tr>');
+      $('.tables').remove();
+      $('table > tbody:last').append($row);
+    } else {
+      alert("Invalid ID");
+    }
+	}, function (error) {
+		console.log("Error: " +  error.code);
+	});
+}
 
 function signOut() {
   firebase.auth().signOut().then(function() {
@@ -36,7 +71,7 @@ function signOut() {
   });
 }
 
-function createAccount() {
+/* function createAccount() {
   const email = document.getElementById('username');
   const password = document.getElementById('password');
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
@@ -46,6 +81,38 @@ function createAccount() {
     console.log(error.message);
     // ...
   });
+} */
+
+function createNewStaff() {
+
+  var ref = new fire("https://bc-18-maintenance-tracker.firebaseio.com");
+
+  var name = document.getElementById('name').value;
+  var age = document.getElementById('age').value;
+  var contactNo = document.getElementById('contactNo').value;
+  var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
+  var specialty = document.getElementById('specialty').value;
+  var dob = document.getElementById('dob').value;
+
+  fire.createUser({
+    email    : email,
+    password : password
+    }, function(error, userData) {
+    if (error) {
+      console.log("Error creating user:", error);
+    } else {
+      console.log("Successfully created user account with uid:", userData.uid);
+    }
+  });
+
+  document.getElementById('name').value = "";
+  document.getElementById('age').value = "";
+  document.getElementById('dob').value = "";
+  document.getElementById('contactNo').value = "";
+  document.getElementById('email').value = "";
+  document.getElementById('password').value = "";
+  document.getElementById('specialty').value = "";
 }
 
 function newMaintenanceRequest() {
@@ -56,33 +123,38 @@ function newMaintenanceRequest() {
   var contact = document.getElementById('contact').value;
   var ownerName = document.getElementById('name').value;
 
-  var projectRef = fire.database().ref('/cars');
-  console.log(projectRef);
-  projectRef.push({
-    "enginenumber": engineNumber,
-    "trackID": trackID,
-    "CarModel": carModel,
-    "Damage" :  damage,
-    "CarOwnerName" : ownerName,
-    "CarOwnerMobile" : contact
-  });
+  if ((trackID == 0) || (ownerName == 0) || (contact == 0) || (carModel == 0)) {
+    alert("One or more required fields is empty");
+  } else {
+    var projectRef = fire.database().ref('/cars');
+    console.log(projectRef);
+    projectRef.push({
+      "enginenumber": engineNumber,
+      "trackID": trackID,
+      "CarModel": carModel,
+      "Damage" :  damage,
+      "CarOwnerName" : ownerName,
+      "CarOwnerMobile" : contact,
+      "status": "pending"
+    });
 
-  document.getElementById('engineNumber').value = "";
-  document.getElementById('trackID').value = "";
-  document.getElementById('carModel').value = "";
-  document.getElementById('damage').value = "";
-  document.getElementById('contact').value = "";
-  document.getElementById('name').value = "";
+    document.getElementById('engineNumber').value = "";
+    document.getElementById('trackID').value = "";
+    document.getElementById('carModel').value = "";
+    document.getElementById('damage').value = "";
+    document.getElementById('contact').value = "";
+    document.getElementById('name').value = "";
+  }
 
   projectRef.on("value", function(snapshot){
-			console.log(snapshot.val());
-		}, function (error) {
-			console.log("Error: " +  error.code);
-		});
-    alert('Success!');
+	   console.log(snapshot.val());
+	}, function (error) {
+		console.log("Error: " +  error.code);
+	});
+  alert('Success!');
 }
 
-function createNewStaff() {
+/* function createNewStaff() {
   var name = document.getElementById('name').value;
   var age = document.getElementById('age').value;
   var contactNo = document.getElementById('contactNo').value;
@@ -116,7 +188,7 @@ function createNewStaff() {
 		}, function (error) {
 			console.log("Error: " +  error.code);
 		});
-}
+} */
 
 function viewLog() {
   var projectRef = fire.database().ref('/cars');
@@ -124,11 +196,12 @@ function viewLog() {
   projectRef.orderByKey().on("value", function(snapshot){
     var cars = [];
     snapshot.forEach(function(childSnapshot) {
-        var car = childSnapshot.val();
-        cars.push(car);
+      var car = childSnapshot.val();
+      cars.push(car);
     });
     for (var i = 0;i < cars.length; i++) {
       var car = cars[i];
+      var trackID = car.trackID;
       var $row = $('<tr>'+
         '<td>'+ (i+1) +'</td>'+
         '<td>' + car.CarOwnerName + '</td>' +
@@ -137,8 +210,9 @@ function viewLog() {
         '<td>' + car.CarModel + '</td>' +
         '<td>' + car.enginenumber + '</td>' +
         '<td>' + car.Damage + '</td>' +
+        '<td>' + car.status + '</a> </td>' +
         '</tr>');
-
+      $('.tables').remove();
       $('table > tbody:last').append($row);
     }
 	}, function (error) {
@@ -152,8 +226,8 @@ function viewStaff() {
   projectRef.orderByKey().on("value", function(snapshot){
     var staffArray = [];
     snapshot.forEach(function(childSnapshot) {
-        var staff = childSnapshot.val();
-        staffArray.push(staff);
+      var staff = childSnapshot.val();
+      staffArray.push(staff);
     });
     for (var i = 0;i < staffArray.length; i++) {
       var staff = staffArray[i];
@@ -166,8 +240,72 @@ function viewStaff() {
         '<td>' + staff.email + '</td>' +
         '<td>' + staff.specialty + '</td>' +
         '</tr>');
-
       $('table > tbody:last').append($row);
+    }
+	}, function (error) {
+	   console.log("Error: " +  error.code);
+	});
+}
+
+function getStaffOnLoad() {
+  var projectRef = fire.database().ref('/staff');
+
+  projectRef.orderByKey().on("value", function(snapshot){
+    var staffArray = [];
+    snapshot.forEach(function(childSnapshot) {
+      var staff = childSnapshot.val();
+      staffArray.push(staff);
+    });
+    for (var i = 0;i < staffArray.length; i++) {
+      var staff = staffArray[i];
+      $('.staffList').append('<option value=' + staff.name +'> ' + staff.name + '</option>');
+    }
+	}, function (error) {
+		console.log("Error: " +  error.code);
+	});
+}
+
+function approvereject() {
+  var status = document.getElementById('status');
+  var checkRow = document.getElementsByTagName('tr');
+
+  if (checkRow.length > 1) {
+    console.log(checkRow);
+    if (status.value == "approve") {
+      alert ('Approve');
+    } else {
+      alert('Reject');
+    }
+  } else {
+    alert('Please Select A Request');
+  }
+}
+
+function trackIDForApproval() {
+  var id = document.getElementById('trackID').value;
+  var projectRef = fire.database().ref('/cars');
+
+  projectRef.orderByKey().on("value", function(snapshot){
+    var cars = [];
+    snapshot.forEach(function(childSnapshot) {
+      var car = childSnapshot.val();
+      cars.push(car);
+    });
+    var carObject ={}
+    for (var i = 0;i < cars.length; i++) {
+      var car = cars[i];
+      carObject[car.trackID] = cars[i];
+    }
+    if(id in carObject){
+      var $row = $('<tr class="tables">'+
+      '<td>' + carObject[id].trackID + '</td>' +
+      '<td>' + carObject[id].CarModel + '</td>' +
+      '<td>' + carObject[id].Damage + '</td>' +
+      '</tr>');
+      $('.tables').remove();
+      $('table > tbody:last').append($row);
+    } else {
+      alert("Invalid ID");
     }
 	}, function (error) {
 		console.log("Error: " +  error.code);

@@ -1,9 +1,11 @@
 html{
+  background-image: url('/assets/img/background.jpg');
   background-color: #eee;
   font-family: 'Slabo 27px', serif;
   font-family: 'Arsenal', sans-serif;
   color: #0b0b0b;
   position: relative;
+  margin:0;
 }
 
 input[type="text"],input[type="email"],textarea,input[type="password"] {
@@ -19,7 +21,7 @@ input[type="text"],input[type="email"],textarea,input[type="password"] {
 button{
     padding: 20px;
     width: 30%;
-    float: left;
+    /* float: left; */
     background: #23282e;
     border: 0;
     box-sizing: border-box;
@@ -47,13 +49,13 @@ body {
 }
 
 a {
-  color:white;
+  color:red;
   text-decoration: none;
 }
 
 
 a:link {
-  color:white;
+  color:red;
 }
 
 a:visited {
@@ -96,4 +98,26 @@ th, td {
   font-size: 1.5rem;
   border: 2px solid black;
   text-align: center;
+}
+
+table {
+  display: block;
+}
+
+.styled-select {
+   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+   height: 29px;
+   overflow: hidden;
+   width: 240px;
+}
+
+.styled-select.slate {
+   background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+   height: 34px;
+   width: 240px;
+}
+
+option {
+  font-family: 'Arsenal', sans-serif;
+  font-size: 1.3rem;
 }
