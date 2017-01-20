@@ -141,3 +141,26 @@ app.get('/approvereject', function(req,res) {
   console.log(req.url);
   res.render('approvereject');
 });
+
+app.post('/approvereject', function(req,res) {
+  console.log(req.url);
+  const handler = req.body.staffList;
+  const trackID = req.body.trackID;
+  console.log(handler);
+
+  var payload = {
+    to: '08066112787',
+    from: 'Maintenance Tracker',
+    message: 'Hello, you\'ve been assigned to work on the item' + trackID + " ."
+  };
+  console.log(payload);
+  jusibe.sendSMS(payload, function (err, res) {
+    if (res.statusCode === 200) {
+      console.log(res.body);
+      //res.redirect('/admin');
+    } else {
+      console.log(err);
+    }
+  });
+  res.redirect('/admin');
+});
