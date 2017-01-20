@@ -26,20 +26,21 @@
     </tr>
   </table>
   <br />
-  <label><h3> Assign Handler: </h3></label>
-  <select class = "staffList" id="staffList">
-  </select>
-  <br />
-  <label><h3>Status</h3></label>
-  <select class = "status" id="status">
-    <option value = "approve">Approve</option>
-    <option value = "reject">Reject</option>
-    <option value = "completed"> Completed </option>
-  </select>
-  <br />
-  <br />
-  <button onclick="approvereject()"> Save Data </button>
-
+  <form method="POST">
+    <label><h3> Assign Handler: </h3></label>
+    <select class = "staffList" id="staffList" name="staffList">
+    </select>
+    <br />
+    <label><h3>Status</h3></label>
+    <select class = "status" id="status" name="status">
+      <option value = "approve">Approve</option>
+      <option value = "reject">Reject</option>
+      <option value = "completed"> Completed </option>
+    </select>
+    <br />
+    <br />
+    <button> Save Data </button>
+  </form>
   <script src="/assets/scripts/admin.js"></script>
 </body>
 </html>
