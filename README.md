@@ -3,16 +3,15 @@ A system to allow reporting of maintenance and repairs request, to track the mai
 
 To install the maintenance tracker:
 
-- Download the file from the repository or use the git command "git clone https://github.com/COOPROTON/bc-18-maintenance-tracker.git" to clone the
+- Download the file from the repository or use the git command `git clone https://github.com/COOPROTON/bc-18-maintenance-tracker.git` to clone the
   repository to your PC.
 
-- Navigate to the project directory on your PC using the "cd <filepath>" command using command prompt for windows or "ls <filepath>" while using  terminal for Linux.
+- Navigate to the project directory on your PC using the `cd bc-18-maintenance-tracker` command using command prompt for windows or `ls <filepath>` while using  terminal for Linux.
 
-- Run the command "npm install" from the command-line interface to install the dependencies of the Maintenance Tracker.
+- Run the command `npm install` from the command-line interface to install the dependencies of the Maintenance Tracker.
 
-- Once this is done, use the command "node main.js" to start the application.
+- Once this is done, use the command `node main.js` to start the application.
 
-- Then you can access the homepage on your PC using "http://localhost:3000"
-
+- Then you can access the homepage on your PC using http://localhost:3000
 
 The hosted version of the web app can be found on Heroku: http://maintenancetracker.herokuapp.com
