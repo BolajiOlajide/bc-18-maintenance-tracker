@@ -10,6 +10,7 @@ var fire = firebase.initializeApp(config);
 // Get a reference to the database service
 var database = fire.database();
 
+//A function to load the track ID automatically when reporting a case
 function onLoadTrackID() {
   var projectRef = fire.database().ref('/cars');
 
@@ -28,7 +29,7 @@ function onLoadTrackID() {
   });
 }
 
-function track() {
+function track() { //a function to track items by their track ID (which is their plate number or serial number)
   var id = document.getElementById('trackID').value;
   var projectRef = fire.database().ref('/cars');
 
@@ -61,7 +62,7 @@ function track() {
 	});
 }
 
-function signOut() {
+function signOut() { //function to sign out a current user from  his or her session
   firebase.auth().signOut().then(function() {
     // Sign-out successful.
     //window.location.href('/');
@@ -84,7 +85,6 @@ function signOut() {
 } */
 
 function createNewStaff() {
-
   var ref = new fire("https://bc-18-maintenance-tracker.firebaseio.com");
 
   var name = document.getElementById('name').value;
@@ -115,7 +115,7 @@ function createNewStaff() {
   document.getElementById('specialty').value = "";
 }
 
-function newMaintenanceRequest() {
+function newMaintenanceRequest() { //making a new maintenance request
   var engineNumber = document.getElementById('engineNumber').value;
   var trackID = document.getElementById('trackID').value;
   var carModel = document.getElementById('carModel').value;
@@ -218,7 +218,7 @@ function viewLog() {
 	}, function (error) {
 		console.log("Error: " +  error.code);
 	});
-}
+} //function to view the logs of maintenance request at any particular time
 
 function viewStaff() {
   var projectRef = fire.database().ref('/staff');
@@ -245,7 +245,7 @@ function viewStaff() {
 	}, function (error) {
 	   console.log("Error: " +  error.code);
 	});
-}
+}  // a function to view the list of maintenance stuff currently employed
 
 function getStaffOnLoad() {
   var projectRef = fire.database().ref('/staff');
@@ -263,9 +263,9 @@ function getStaffOnLoad() {
 	}, function (error) {
 		console.log("Error: " +  error.code);
 	});
-}
+}  //a function to load all staff in a dropdown list button on page load
 
-function approvereject() {
+/* function approvereject() {
   var status = document.getElementById('status');
   var checkRow = document.getElementsByTagName('tr');
 
@@ -295,7 +295,7 @@ function approvereject() {
   } else {
     alert('Please Select A Request');
   }
-}
+} //a function to approve or reject maintenance requests */
 
 function trackIDForApproval() {
   var id = document.getElementById('trackID').value;
@@ -326,4 +326,4 @@ function trackIDForApproval() {
 	}, function (error) {
 		console.log("Error: " +  error.code);
 	});
-}
+} //during approval get maintenance request details using its track ID

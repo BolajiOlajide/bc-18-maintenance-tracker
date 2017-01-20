@@ -1,6 +1,5 @@
 var express = require('express');
 require('dotenv').config();
-
 var app = express();
 var methodOverride = require('method-override');
 var firebase = require('./firebasedb');
@@ -21,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/assets', express.static('assets'));
 
 app.set('port',process.env.PORT || 3000);
+
 app.listen(app.get('port'),function() {
     console.log('Maintenance Tracker running. To terminate press Ctrl + C.');
 });
@@ -46,16 +46,26 @@ app.post('/', function(req,res) {
       console.log('accepted');
       res.redirect('/admin');
       console.log('Success!');
+
+      var payload = {
+        to: '08073017269',
+        from: 'Maintenance Tracker',
+        message: 'Hello, you\'re logged in to the Maintenance Tracker. If you believe this SMS was sent in error contact the Admin.'
+      };
+      console.log(payload);
+      jusibe.sendSMS(payload, function (err, res) {
+        if (res.statusCode === 200) {
+          console.log(res.body);
+          //res.redirect('/admin');
+        } else {
+          console.log(err);
+        }
+      });
     })
     .catch(function(error){
       console.log(error);
       res.status(500).send({message: 'Login Failed'});
     });
-});
-
-app.get('/createAccount', function(req,res) {
-  console.log(req.url);
-  res.render('createAccount');
 });
 
 /* app.use(function(req, res) {
@@ -76,28 +86,36 @@ app.get('/track', function(req,res) {
   res.render('track');
 });
 
+/* app.post('/track', function(req,res){
+  const trackID = req.body.trackID;
+
+  console.log(trackID);
+  var carRef = firebase.database().ref('/cars');
+  carRef.orderByKey().on("value", function(snapshot){
+    var cars = [];
+    snapshot.forEach(function(childSnapshot) {
+      var car = childSnapshot.val();
+      cars.push(car);
+    });
+    var carObject ={}
+    for (var i = 0;i < cars.length; i++) {
+      var car = cars[i];
+      carObject[car.trackID] = cars[i];
+    }
+    if(id in carObject){
+      console.log(carObject);
+    } else {
+      alert("Invalid ID");
+    }
+	}, function (error) {
+		console.log("Error: " +  error.code);
+	});
+}); */
+
 app.get('/report', function(req,res) {
   console.log(req.url);
   res.render('report');
 });
-
-app.post('/report', function(req,res) {
-  console.log(req.url);
-  var payload = {
-    to: '+2347038550515',
-    from: 'Maintenance Tracker',
-    message: 'Hello From the other side 😎\nI must have called a thousand times.'
-  };
-  console.log(payload);
-  jusibe.sendSMS(payload, function (err, res) {
-    if (res.statusCode === 200) {
-      console.log(res.body);
-      //res.redirect('/admin');
-    } else {
-      console.log(err);
-    }
-  });
-})
 
 app.get('/newMaintain', function(req,res) {
   console.log(req.url);
