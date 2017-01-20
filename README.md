@@ -11,3 +11,8 @@ To install the maintenance tracker:
 - Run the command "npm install" from the command-line interface to install the dependencies of the Maintenance Tracker.
 
 - Once this is done, use the command "node main.js" to start the application.
+
+- Then you can access the homepage on your PC using "http://localhost:3000"
+
+
+The hosted version of the web app can be found on Heroku: http://maintenancetracker.herokuapp.com
