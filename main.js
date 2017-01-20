@@ -157,7 +157,6 @@ app.post('/approvereject', function(req,res) {
   jusibe.sendSMS(payload, function (err, res) {
     if (res.statusCode === 200) {
       console.log(res.body);
-      //res.redirect('/admin');
     } else {
       console.log(err);
     }
